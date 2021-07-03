@@ -10,8 +10,10 @@ uint32_t crc32_bitwise(const void* data, size_t length) {
   unsigned char* current = (unsigned char*) data;
 
   while (length--)   {
-   crc ^= *current++;     for (unsigned int j = 0; j < 8; j++)
-   crc = (crc >> 1) ^ (-(int)(crc & 1) & Polynomial);
+    crc ^= *current++;
+
+    for (unsigned int j = 0; j < 8; j++)
+      crc = (crc >> 1) ^ (-(int)(crc & 1) & Polynomial);
   }
 
   return ~crc; // same as crc ^ 0xFFFFFFFF
